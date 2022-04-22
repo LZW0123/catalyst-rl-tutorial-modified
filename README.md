@@ -1,3 +1,4 @@
+- **注意安装pytorch的时候，一定要按照系统的cuda版本来安装，安装完成之后一定要确保cuda可以使用**
 # Robotic Assembly using Deep Reinforcement Learning
 
 ![](./images/tutorial_gif.gif)
@@ -13,7 +14,19 @@ The accompanying code together with all the details of the implementation can be
 1. Download the **robot simulation platform**, CoppeliaSim, from [the official website](https://www.coppeliarobotics.com/downloads). This tutorial is compatible with the version 4.1.0. 
 
 2. Setup **toolkit for robot learning research**, PyRep, from their [github repository](https://github.com/stepjam/PyRep). PyRep library is built on top of CoppeliaSim to facilitate prototyping in python. 
-
+    - git clone https://github.com/stepjam/PyRep.git
+    - cd PyRep
+    - conda create --name catalystenv python=3.6
+    - conda activate catalystenv
+    - pip3 install -r requirements.txt
+    - python3 setup.py install --user
+    - 在 ~/.bashrc 或 ~/.zshrc 中进行如下配置
+    ```bash
+    export COPPELIASIM_ROOT=/media/datf/lzh/CoppeliaSim_Edu_V4_1_0_Ubuntu16_04 ==自行修改此处==
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COPPELIASIM_ROOT
+    export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
+    ```
+    - 执行source ~/.bashrc
 3. Create **an environment for the RL agent**: It could be either a simulation or a real environment. We limit ourselves to simulation for faster prototyping and training. The agent interacts with the environment to collect experience. This allows it to learn a policy which maximizes the expected (discounted) sum of future rewards and hence solves the designed task. Most RL practitioners are familiar with the [OpenAI Gym environments](https://gym.openai.com/envs/#classic_control), a toolkit with toy environments used for developing and benchmarking reinforcement learning algorithms. However, our use case, robotic assembly task, is very specific. The goal is to train a robot to perform peg-in-hole insertion. This is why we created our simulation environment in [CoppeliaSim](https://www.coppeliarobotics.com). The simulator comes with various robot manipulators and grippers. For our tutorial, we picked UR5 robot with RG2 gripper (Figure 1).
    ![](./images/sim_env.png) 
 

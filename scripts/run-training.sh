@@ -15,4 +15,4 @@ if [[ -z "$series_name" ]]; then
   tb_logdir=${CUR_TB_LOGDIR}; else
   tb_logdir=$logs_folder/$series_name;
 fi
-
+tensorboard --logdir='${tb_logdir}' --port=$tensorboard_port --bind_all

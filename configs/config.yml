@@ -1,5 +1,5 @@
 args:
-  logdir: /media/datf/lzh/tutorial_training/logs/220422-0113-config
+  logdir: /media/datf/lzh/tutorial_training/logs/220422-1044-config
   expdir: src
 
   vis: 0
